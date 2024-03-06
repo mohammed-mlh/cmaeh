@@ -1,0 +1,11 @@
+{% extends 'core/base.html' %}
+
+{% block content %}
+{% include "core/partials/hero.html" %}
+<div class="px-4 py-4 md:px-8 lg:px-16">
+  {% include "core/partials/categories.html" with categories=categories %}
+  {% include "core/partials/products.html" with products=products title="Notre Populaires Produits" %}
+  {% include "core/partials/testimonials.html" %}
+</div>
+{% include "core/partials/cta.html"%}
+{% endblock %}

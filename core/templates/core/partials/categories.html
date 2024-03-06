@@ -1,0 +1,16 @@
+<h2 class="mb-8 text-center text-2xl font-bold text-gray-800 lg:text-3xl">Notre categories</h2>
+<div class="grid gap-4 sm:grid-cols-2 md:gap-6 lg:grid-cols-3">
+  {% for category in categories %}
+    <div>
+      <a href="#" class="group relative flex h-96 items-end overflow-hidden rounded-lg bg-gray-100 p-4 shadow-lg">
+        <img src="/static/media/{{category.image}}" loading="lazy" alt="Photo by Austin Wade" class="absolute inset-0 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110" />
+
+        <div class="relative flex w-full flex-col rounded-lg bg-white p-4 text-center">
+          <!-- <span class="text-gray-500">Men</span> -->
+          <span class="text-lg font-bold text-gray-800 lg:text-xl">{{category.title}}</span>
+        </div>
+      </a>
+    </div>
+  {% endfor %}
+  
+</div>
