@@ -8,5 +8,5 @@ from django.core.management import call_command
 @receiver(post_save, sender=Product)
 @receiver(post_save, sender=Config)
 def run_collectstatic(sender, instance, created, **kwargs):
-    if created:  # Only run on creation of new instance
-        call_command('collectstatic', interactive=False)
+  if created:  # Only run on creation of new instance
+      call_command('collectstatic', interactive=False)
