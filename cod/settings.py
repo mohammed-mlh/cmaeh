@@ -14,7 +14,7 @@ SECRET_KEY = 'django-insecure-km88#!xkex7b$3jkiupk9j^005g5xw_b@##y87t8erccdzx@35
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['*', 'web', 'localhost']
 
 
 # Application definition
@@ -109,6 +109,12 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+
+STATICFILES_FINDERS = [
+    'django.contrib.staticfiles.finders.FileSystemFinder',
+    'django.contrib.staticfiles.finders.AppDirectoriesFinder',
+]
+
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static/'),
