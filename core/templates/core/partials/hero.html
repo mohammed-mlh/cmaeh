@@ -1,6 +1,8 @@
 <section class="h-[80vh] md:min-h-80 relative flex flex-1 shrink-0 items-center justify-center overflow-hidden bg-gray-100 py-12 shadow-lg md:py-20 xl:py-28">
+  {% load static %}
   <!-- image - start -->
-  <img src="/static/media/{{config.hero_image}}" loading="lazy" alt="Photo by Fakurian Design" class="absolute inset-0 h-full w-full object-cover object-center" />
+  <!-- <img src="/static/media/{{config.hero_image}}" loading="lazy" alt="Photo by Fakurian Design" class="absolute inset-0 h-full w-full object-cover object-center" /> -->
+  <img src="{% static 'media/' %}{{ config.hero_image }}" loading="lazy" alt="Photo by Fakurian Design" class="absolute inset-0 h-full w-full object-cover object-center" />
   <!-- image - end -->
 
   <!-- overlay - start -->

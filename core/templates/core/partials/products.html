@@ -8,10 +8,12 @@
   <div class="grid gap-8 sm:gap-10 grid-cols-2 lg:grid-cols-3">
     <!-- product - start -->
     {% for product in products %}
+    {% load static %}
+
     <div>
       <a href="/product/{{product.slug}}" class="group relative mb-2 block h-80 overflow-hidden rounded-lg bg-gray-100 shadow-lg lg:mb-3">
         <img
-          src="/static/media/{{product.images.first.image}}"
+          src="{% static 'media/' %}{{product.images.first.image}}"
           loading="lazy"
           alt="Photo by Austin Wade"
           class="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
