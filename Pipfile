@@ -8,6 +8,9 @@ django = "*"
 pillow = "*"
 django-autoslug = "*"
 django-jazzmin = "*"
+gunicorn = "*"
+psycopg2-binary = "*"
+dj-database-url = "*"
 
 [dev-packages]
 
