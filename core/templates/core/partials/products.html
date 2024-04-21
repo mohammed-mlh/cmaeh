@@ -1,22 +1,22 @@
 <section>
   {% if title != Null %}
     <div class="mb-10">
-      <h2 class="mb-4 text-3xl lg:text-4xl text-center font-bold text-gray-800">{{title}}</h2>
+      <h2 class="m-4 text-3xl lg:text-4xl text-center font-bold text-gray-800">{{title}}</h2>
     </div>
   {% endif %}
 
-  <div class="grid gap-8 sm:gap-10 grid-cols-2 lg:grid-cols-3">
+  <div class="grid gap-4 sm:gap-10 grid-cols-2 lg:grid-cols-3">
     <!-- product - start -->
     {% for product in products %}
     {% load static %}
 
     <div>
-      <a href="/product/{{product.slug}}" class="group relative mb-2 block h-80 overflow-hidden rounded-lg bg-gray-100 shadow-lg lg:mb-3">
+      <a href="/produit/{{product.slug}}" class="group relative mb-2 block h-60 overflow-hidden rounded-lg bg-gray-100 shadow-lg lg:mb-3">
         <img
           src="{% static 'media/' %}{{product.images.first.image}}"
           loading="lazy"
           alt="Photo by Austin Wade"
-          class="h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
+          class="max-40 h-full w-full object-cover object-center transition duration-200 group-hover:scale-110"
         />
         <div class="absolute left-0 bottom-2 flex gap-2">
           <span class="rounded-r-lg bg-red-500 px-3 py-1.5 text-sm font-semibold uppercase tracking-wider text-white">promo</span>
@@ -24,13 +24,13 @@
         </div>
       </a>
 
-      <div class="flex items-start justify-between gap-2 px-2">
+      <div class="flex items-start flex-col justify-between gap-2 px-2">
         <div class="flex flex-col">
-          <a href="/product/{{product.slug}}" class="text-lg font-bold text-gray-800 transition duration-100 hover:text-gray-500 lg:text-xl max-h-14 md:max-h-6 overflow-hidden">{{product.title|title}}</a>
+          <a href="/produit/{{product.slug}}" class="text-lg font-bold text-gray-800 transition duration-100 hover:text-gray-500 lg:text-xl max-h-14 md:max-h-6 overflow-hidden">{{product.title|title}}</a>
           <span class="text-gray-500 sr-only">{{product.category.title}}</span>
         </div>
 
-        <div class="flex flex-col items-end">
+        <div class="flex gap-2 md:flex-col items-center">
           <span class="font-bold text-gray-600 lg:text-lg">{{product.price}}</span>
           <span class="text-sm text-red-500 line-through">{{product.past_price}}</span>
         </div>

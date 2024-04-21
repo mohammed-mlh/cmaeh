@@ -1,0 +1,47 @@
+{% extends 'core/base.html' %} {% block content %} {% load static %}
+
+<div class="header-section">
+    <div class="container-flex"><img src="{% static 'images/yumyum.png' %}" alt="" style="-webkit-transform:translate3d(0, 45PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 45PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 45PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 45PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);"
+            sizes="(max-width: 767px) 100vw, 500px" srcset="{% static 'images/yumyum-p-500.png' %} 500w, {% static 'images/yumyum.png' %} 515w" class="cursive-text" />
+        <div class="title-wrap-centre">
+            <h1 style="-webkit-transform:translate3d(0, 25PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 25PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 25PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 25PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);"
+                class="header-h1">Our company focuses on <span class="brand-span">food and people.</span></h1>
+        </div>
+    </div>
+</div>
+<div style="" class="content-section">
+    <div class="container">
+        <div class="w-layout-grid content-grid">
+            <div class="content-block">
+                <h2>The home of<br />fresh products</h2>
+                <p>At CMAEH, we believe in the power of great food to bring people together. Founded in 2015, our mission has been to provide high-quality, delicious food delivered right to your door. Our team of expert chefs works tirelessly to craft meals
+                    that not only taste good but also make you feel good.</p><a href="/company" aria-current="page" class="button button-space w-button w--current">Learn about us</a>
+            </div>
+            <div class="image-block"><img src="{% static 'images/team-20image.png' %}" alt="" /></div>
+        </div>
+    </div>
+</div>
+<div class="cta-full-image">
+    <div class="container">
+        <div class="w-layout-grid grid-3">
+            <div class="statistic-block">
+                <h1 class="statistic">62</h1><img src="{% static 'images/wave-20blue.svg' %}" alt="" class="wave" />
+                <div class="text-block-82">Fiesty Menu Items</div>
+            </div>
+            <div class="statistic-block">
+                <h1 class="statistic">139</h1><img src="{% static 'images/wave-20blue.svg' %}" alt="" class="wave" />
+                <div class="text-block-82">Fiesty Menu Items</div>
+            </div>
+            <div class="statistic-block">
+                <h1 class="statistic">34</h1><img src="{% static 'images/wave-20blue.svg' %}" alt="" class="wave" />
+                <div class="text-block-82">Fiesty Menu Items</div>
+            </div>
+            <div class="statistic-block">
+                <h1 class="statistic">57</h1><img src="{% static 'images/wave-20blue.svg' %}" alt="" class="wave" />
+                <div class="text-block-82">Fiesty Menu Items</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

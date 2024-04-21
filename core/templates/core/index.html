@@ -1,11 +1,96 @@
-{% extends 'core/base.html' %}
+ {% extends 'core/base.html' %} {% block content %} {% load static %}
 
-{% block content %}
-{% include "core/partials/hero.html" %}
-<div class="px-4 py-4 md:px-8 lg:px-16">
-  {% include "core/partials/categories.html" with categories=categories %}
-  {% include "core/partials/products.html" with products=products title="Notre Populaires Produits" %}
-  {% include "core/partials/testimonials.html" %}
+<div>
+    {% include "core/partials/header.html" %}
+
+    <!-- Header -->
+    <div class="content-section-bg">
+        <div class="container">
+            <div class="w-layout-grid content-grid">
+                <div class="content-block bg-text">
+                    <h2>The home of<br/>fresh products</h2>
+                    <p>Explore our extensive menu that caters to all tastes and preferences. Whether you&#x27;re craving a comforting soup on a rainy day, a crisp salad for a light lunch</p><a href="/company" class="button button-space w-button">Learn about us</a></div>
+                <div class="image-block"><img src="{% static 'images/food-20image.png' %}" sizes="(max-width: 556px) 94vw, 523px" srcset="images/group-252033-p-500.png 500w, images/food-20image.png 523w" alt="" /></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works -->
+    {% load static %}
+
+    <div class="content-section">
+        <div class="container">
+            <div class="title-wrap-centre">
+                <h2>How it works.</h2>
+            </div>
+            <div class="w-layout-grid works-grid">
+                <div class="content-card"><img src="{% static 'images/step-2001.png' %}" alt="" class="step-image" />
+                    <div class="content-wrapper">
+                        <h5>Adapt your menu items</h5>
+                        <p>Easily adapt your menu using the webflow CMS and allow customers to browse your items.</p>
+                    </div>
+                </div>
+                <div class="line-column">
+                    <div class="line"></div>
+                </div>
+                <div class="content-card"><img src="{% static 'images/step-2002.png' %}" alt="" class="step-image" />
+                    <div class="content-wrapper">
+                        <h5>Accept online orders &amp; takeout</h5>
+                        <p>Let your customers order and pay via the powerful ecommerce system, or simple let them call your store.</p>
+                    </div>
+                </div>
+                <div class="line-column">
+                    <div class="line"></div>
+                </div>
+                <div class="content-card"><img src="{% static 'images/step-2003.png' %}" alt="" class="step-image" />
+                    <div class="content-wrapper">
+                        <h5>Manage delivery or takeout</h5>
+                        <p>Manage your own logistics and take orders simply through the ecommerce system.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        {% include "core/partials/browse_menu.html" with burgers=burgers %}
+    </div>
+
+    <!-- Order Now -->
+
+    <div class="content-section">
+        <div class="container">
+            <div class="w-layout-grid content-grid">
+                <div class="image-block"><img src="{% static 'images/phones.png' %}" sizes="94vw" srcset="{% static 'images/phones-p-500.png' %} 500w, {% static 'images/phones-p-800.png' %} 800w, {% static 'images/phones.png'%} 2103w" alt="" /><img src="{% static 'images/content-20pattern.svg' %}"
+                        alt="" class="pattern" /></div>
+                <div class="content-block">
+                    <h2>Order online with our simple checkout.</h2>
+                    <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#x27;s standard dummy text ever since the 1500.</p><a href="/faq" class="button button-space w-button">See our FAQ</a></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact -->
+    <div class="content-section-bg">
+        <div class="container">
+            <div class="w-layout-grid content-grid">
+                <div class="content-block bg-text">
+                    <h2>Call our store and takeaway when it suits you best.</h2>
+                    <p>our mission has been to provide high-quality, delicious food delivered right to your door.</p><a href="#" class="button button-space w-button">Ph. +66 233 2333</a></div>
+                <div class="image-block"><img src="{% static 'images/food-20takeaway.png' %}" alt="" /></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+        <div class="w-layout-grid cta-grid">
+            <div class="cta-image"></div>
+            <div class="cta-content">
+                <h1 class="cta-heading"><span class="dark-span">Support</span> good food<br/>and local business.</h1><a href="/order" class="button-white button-space w-button">Order Now</a></div>
+        </div>
+    </div>
+
+
 </div>
-{% include "core/partials/cta.html"%}
 {% endblock %}

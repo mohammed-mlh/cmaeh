@@ -1,88 +1,150 @@
-from django.http import HttpRequest, HttpResponse
-from django.shortcuts import redirect, render
-from core.models import ContactMessage, Product, Category, Order
+from django.http import HttpRequest, HttpResponse, JsonResponse
+from django.shortcuts import get_object_or_404, redirect, render
+from django.views.generic import TemplateView, DetailView, View
+from core.models import Product
+from django.contrib import messages
 from config.models import Config
+
+class CartContextMixin:
+    def get_cart_data(self):
+        cart_items = self.request.session.get('cart_items', [])
+
+        cart_products = []
+        total_quantity = 0
+        total_price = 0
+
+        for item in cart_items:
+            product_id = item['product_id']
+            quantity = item['quantity']
+            product = Product.objects.get(id=product_id)
+            subtotal = product.price * quantity
+
+            cart_products.append({
+                'product': product,
+                'quantity': quantity,
+                'subtotal': subtotal
+            })
+
+            total_quantity += quantity
+            total_price += subtotal
+
+        return {
+            'cart_products': cart_products,
+            'total_quantity': total_quantity,
+            'total_price': total_price
+        }
 
 
 def index(request):
+  cart_data = request.cart_data
+  print(cart_data)
   products = Product.objects.all().filter(is_featured=True)
-  categories = Category.objects.all().filter()
+  burgers = products.filter(category='burgers')
+  print(burgers.get(id=2).category)
   config = Config.objects.first()
   return render(request, 'core/index.html', {
-    'products': products,
-    'categories': categories,
+    'burgers': burgers,
     'config': config
     })
 
-def products(request):
-  products = Product.objects.all().filter(is_featured=True)
-  return render(request, 'core/products.html', {
-    'products': products,
-    })
+class CompanyView(TemplateView):
+    template_name = "core/company.html"
 
-def product_details(request: HttpRequest, slug: str):
-    product = Product.objects.get(slug=slug)
-    colors = product.colors.split(',') if product.colors else []
-    sizes = product.sizes.split(',') if product.sizes else []
+class FaqView(TemplateView):
+    template_name = "core/faq.html"
+
+class CheckoutView(TemplateView):
+    template_name = "core/checkout.html"
+
+class OrderView(TemplateView):
+    template_name = "core/order.html"
+
+class ProductView(DetailView):
+    model = Product
+    context_object_name = 'product'
+    template_name = "core/product.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        # context["now"] = timezone.now()
+        return context
+
+
+
+class AddToCartView(View):
+    def post(self, request, product_id):
+        redirect_url = request.META.get('HTTP_REFERER')
+        product = get_object_or_404(Product, id=product_id)
+        quantity = int(request.POST.get('quantity', 1))
+
+        if quantity < 1:
+            messages.error(request, 'Quantity must be at least 1.')
+            return redirect(redirect_url)
+
+        # Retrieve cart items from session or create an empty list if not present
+        cart_items = request.session.get('cart_items', [])
+
+        # Check if the product is already in the cart
+        for item in cart_items:
+            if item['product_id'] == product_id:
+                item['quantity'] = quantity
+                request.session['cart_items'] = cart_items
+                messages.success(request, 'Product quantity updated in cart.')
+                return redirect(redirect_url)
+
+        # If the product is not in the cart, create a new cart item
+        cart_items.append({'product_id': product_id, 'quantity': quantity})
+        request.session['cart_items'] = cart_items
+        messages.success(request, 'Product added to cart successfully.')
+        return redirect(redirect_url)
     
-    if request.method == 'POST':
-        # Handle form submission manually
-        color = request.POST.get('color')
-        size = request.POST.get('size')
-        name = request.POST.get('name')
-        city = request.POST.get('city')
-        address = request.POST.get('address')
-        phone_number = request.POST.get('phone_number')
-        quantity = int(request.POST.get('quantity', 1))  # Default to 1 if quantity is not provided
+class UpdateItemQuantityView(View):
+    def post(self, request, product_id, *args, **kwargs):
+        redirect_url = request.META.get('HTTP_REFERER')
+        # Get the new quantity from the form data
+        new_quantity = int(request.POST.get('commerce-add-to-cart-quantity-input', 1))
+        print('ojo',new_quantity)
 
-        # Create a new order object
-        order = Order.objects.create(
-            product=product,
-            color=color,
-            size=size,
-            quantity=quantity,
-            city=city,
-            name=name,
-            address=address,
-            phone_number=phone_number,
-        )
+        # Retrieve the cart from the session
+        cart = request.session.get('cart_items', [])
 
-        # Additional logic can be added here, such as calculating total price, etc.
+        # Search for the item with the same product ID and update its quantity
+        for item in cart:
+            if item['product_id'] == product_id:
+                item['quantity'] = new_quantity
+                break
+        else:
+            # If the item is not found, return an error or handle it accordingly
+            messages.error(request, "Product not found in cart.")
+            return redirect('order')  # Replace 'your_orders_url_name' with the name of your orders URL
 
-        return HttpResponse('sucess')  # Redirect to a success page after order submission
+        # Store the updated cart back into the session
+        request.session['cart_items'] = cart
 
-    else:
-        # Render the form with initial data
-        initial_form_data = {'quantity': 1}
-        context = {
-            'product': product,
-            'colors': colors,
-            'sizes': sizes,
-            'initial_form_data': initial_form_data,
-        }
+        # Optionally, you can add a success message
+        messages.success(request, "Quantity updated successfully.")
 
-    return render(request, 'core/product_details.html', context)
+        # Redirect to the orders page
+        return redirect(redirect_url)  # Replace 'your_orders_url_name' with the name of your orders URL
+
+def remove_from_cart(request, product_id):
+    cart_items = request.session.get('cart_items', [])
+    cart_items = [item for item in cart_items if item['product_id'] != product_id]
+    request.session['cart_items'] = cart_items
+    return redirect('cart')
 
 
-def contact_form(request: HttpRequest):
-    if request.method == 'POST':
-        first_name = request.POST.get('first-name')
-        last_name = request.POST.get('last-name')
-        phone_number = request.POST.get('phone_number')
-        message = request.POST.get('message')
-        
-        # Create a new ContactMessage object and save it to the database
-        ContactMessage.objects.create(
-            first_name=first_name,
-            last_name=last_name,
-            phone_number=phone_number,
-            message=message
-        )
 
-        # Redirect to a success page or any other page
-        return HttpResponse('<h1 class="w-full font-bold text-center text-xl">Message envoyé avec succéss</h1>')  # Replace 'success_page' with the URL name of your success page
+class ViewCart(CartContextMixin, TemplateView):
+    template_name = 'core/cart.html'
 
-    return render(request, 'core/contact.html')
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context.update(self.get_cart_data())
+        return context
 
-def about(request):
-    return render(request, 'core/about.html')
+def clear_cart(request):
+    # Clear the cart by removing all items from the session
+    request.session['cart_items'] = []
+    # Redirect back to the cart page or any other page
+    return redirect('/cart')

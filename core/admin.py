@@ -1,18 +1,11 @@
 from django.contrib import admin
-from .models import Category, Product, ProductImage, Order, ContactMessage
+from .models import Product, Order, ContactMessage
 
-admin.site.site_title = 'COD System'
-admin.site.site_header = 'COD Sytem'
+admin.site.site_title = 'CMAEH'
+admin.site.site_header = 'CMAEH Sytem'
 
-class ProductsImageInline(admin.TabularInline):
-  model = ProductImage
 
-class ProductAdmin(admin.ModelAdmin):
-  inlines = [
-    ProductsImageInline,
-  ]
 
-admin.site.register(Category)
-admin.site.register(Product, ProductAdmin)
+admin.site.register(Product)
 admin.site.register(Order)
 admin.site.register(ContactMessage)

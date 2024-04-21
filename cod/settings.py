@@ -39,6 +39,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'core.cart_middleware.CartMiddleware',
+
 ]
 
 ROOT_URLCONF = 'cod.urls'
@@ -54,6 +56,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                # 'django.template.context_processors.i18n'
             ],
         },
     },
@@ -95,11 +98,18 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'fr'
+
+# LOCALE_PATH = BASE_DIR / 'locale/'
 
 TIME_ZONE = 'UTC'
 
 USE_I18N = True
+# LANGUAGES = [
+#   ('en', ('English')),
+#   ('fr', ('French')),
+#   ('ar', ('Arabic')),
+# ]
 
 USE_TZ = True
 

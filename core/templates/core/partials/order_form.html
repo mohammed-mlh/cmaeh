@@ -1,44 +1,48 @@
-<div class="mmt-6" x-data="{ open: false }">
+<div class="mt-6" x-data="{ open: false }">
 
   <!-- Button (blue), duh! -->
-  <div class="fixed bottom-0 left-0 right-0  w-screen z-50  ">
+  <div class="fixed bottom-0 left-0 right-0 z-50">
     <button class="w-full px-4 py-2 text-white bg-accent rounded select-none no-outline focus:shadow-outline" @click="open = true">Acheter Maintenant</button>
   </div>
 
   <!-- Dialog (full screen) -->
-  <div class="fixed top-0 left-0 bottom-0 h-screen flex items-center justify-center w-full" style="background-color: rgba(0,0,0,.5);" x-show="open"  >
+  <div class="fixed h-screen  z-[60] top-0 left-0 bottom-0 h-screen flex items-center justify-center w-full" style="background-color: rgba(0,0,0,.5);" x-show="open">
 
     <!-- A basic modal dialog with title, body and one button to close -->
-    <div class="h-auto p-4 mx-2 text-left bg-white rounded shadow-xl md:max-w-xl md:py-8 md:mx-0" @click.away="open = false">
+    <div class="  w-screen p-4 text-left bg-white rounded shadow-xl md:max-w-xl md:py-8 md:mx-0" @click.away="open = false">
 
       <h3 class="text-lg font-medium leading-6 text-gray-900 text-center mb-4">
         Confirmez votre ordre?
       </h3>
 
-      <form method="post" action="/product/{{product.slug}}">
+      <form method="post" action="/produit/{{ product.slug }}">
         {% csrf_token %}
-        <div class="flex items-center gap-4">
-          <div class="w-full">
-            <label for="color" class="block text-sm font-medium text-gray-700">Couleur</label>
-            <select id="color" name="color" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-              {% for color in colors %}
-              <option value="{{ color }}" style='color: {{color}}'>{{ color|title }}</option>
-              {% endfor %}
-            </select>
+        <div class="w-full">
+          <label for="color" class="block text-sm font-medium text-gray-700">Couleur</label>
+          <div class="flex items-center mt-1">
+            {% for color in colors %}
+            <div class="color-option">
+              <input type="radio" id="color_{{ color }}" name="color" value="{{ color }}" class="hidden" />
+              <label for="color_{{ color }}" class="color-option cursor-pointer" style="background-color: {{ color }};"></label>
+            </div>
+            {% endfor %}
           </div>
-          <div class="w-full">
-            <label for="size" class="block text-sm font-medium text-gray-700">Taille</label>
-            <select id="size" name="size" class="mt-1 block w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-              {% for size in sizes %}
-              <option value="{{ size }}">{{ size|title }}</option>
-              {% endfor %}
-            </select>
+        </div>
+        <div class="w-full">
+          <label for="size" class="block text-sm font-medium text-gray-700">Taille</label>
+          <div class="flex items-center mt-1">
+            {% for size in sizes %}
+            <div class="size-option">
+              <input type="radio" id="size_{{ size }}" name="size" value="{{ size }}" class="hidden" />
+              <label for="size_{{ size }}" class="cursor-pointer">{{ size|title }}</label>
+            </div>
+            {% endfor %}
           </div>
         </div>
         <div class="flex items-center gap-4 mt-4">
           <div class="w-full">
             <label for="name" class="sr-only text-sm font-medium text-gray-700">Nom</label>
-            <input class="w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Votre nom" type="text" name="name" id="name" />
+            <input class="w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Votre nom" type="text" name="name" id="name">
           </div>
           <div class="w-full">
             <label for="city" class="sr-only text-sm font-medium text-gray-700">Ville</label>
@@ -50,7 +54,7 @@
           <input class="w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Numéro téléphone" type="text" name="phone_number" id="phone_number">
         </div>
         <div class="w-full mt-4">
-          <label for="phone_number" class="sr-only block text-sm font-medium text-gray-700">Votre Aaresse</label>
+          <label for="address" class="sr-only block text-sm font-medium text-gray-700">Votre Adresse</label>
           <input class="w-full py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm" placeholder="Votre adresse" type="text" name="address" id="address">
         </div>
         <div class="flex gap-4 mt-4">

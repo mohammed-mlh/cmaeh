@@ -1,0 +1,202 @@
+{% extends 'core/base.html' %} {% load static %} {% block head %}
+<title>{{ product.title }}</title>
+<meta name="description" content="{{ product.description }}">
+<meta content="{{ product.description }}" property="og:description" />
+<meta content="{% static 'media/' %}{{image.image}}" property="og:image" />
+<meta content="Beans Slow Cooked" property="twitter:title" />
+<meta content="Packed with smoked cheddar, bacon, and a smoky chipotle sauce that adds depth to every bite." property="twitter:description" />
+<meta content="../images/side-2005.png" property="twitter:image" /> {% endblock %} {% block content %}
+<!-- <div class="header-section">
+    <div class="container-flex"><img src="{% static 'images/yumyum.png' %}" alt="" style="-webkit-transform:translate3d(0, 45PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 45PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 45PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 45PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);"
+            sizes="(max-width: 767px) 100vw, 500px" srcset="{% static 'images/yumyum-p-500.png' %} 500w, {% static 'images/yumyum.png' %} 515w" class="cursive-text" />
+        <div class="title-wrap-centre">
+            <h1 style="-webkit-transform:translate3d(0, 25PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-moz-transform:translate3d(0, 25PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);-ms-transform:translate3d(0, 25PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);transform:translate3d(0, 25PX, 0) scale3d(1, 1, 1) rotateX(0) rotateY(0) rotateZ(0) skew(0, 0);"
+                class="header-h1">{{product.name}}</h1>
+        </div>
+    </div>
+</div> -->
+<div class="content-section-short reduce-m">
+    <div class="container">
+        <div class="w-layout-grid product-grid">
+            <div class="product-image-wrapper">
+                <img data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_main_image_4dr%22%2C%22to%22%3A%22src%22%7D%5D" src="{% static 'media/' %}{{product.image}}" alt="Beans Slow Cooked" class="product-image" />
+            </div>
+            <div class="product-content">
+                <h3>{{product.title}}</h3>
+                <div data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_price_%22%2C%22to%22%3A%22innerHTML%22%7D%5D" class="price-text">$ {{product.price}} USD</div>
+                <div class="plain-line"></div>
+                <div class="full-details w-richtext">
+                    <p>{{product.subtitle}}</p>
+                </div>
+                <div>
+                    <form method="post" action="/add_to_cart/{{ product.id }}/">
+                        {% csrf_token %}
+                        <input type="number" pattern="^[0-9]+$" inputMode="numeric" id="quantity-{{ product.id }}" name="quantity" min="1" class="quantity" value="1">
+                        <input type="submit" class="order-button" value="Add to Cart">
+                    </form>
+                    <div style="display:none" class="w-commerce-commerceaddtocartoutofstock out-of-stock-state" tabindex="0">
+                        <div>This product is out of stock.</div>
+                    </div>
+                    <div aria-live="" data-node-type="commerce-add-to-cart-error" style="display:none" class="w-commerce-commerceaddtocarterror">
+                        <div data-node-type="commerce-add-to-cart-error" data-w-add-to-cart-quantity-error="Product is not available in this quantity." data-w-add-to-cart-general-error="Something went wrong when adding this item to the cart." data-w-add-to-cart-mixed-cart-error="You can’t purchase another product with a subscription."
+                            data-w-add-to-cart-buy-now-error="Something went wrong when trying to purchase this item." data-w-add-to-cart-checkout-disabled-error="Checkout is disabled on this site." data-w-add-to-cart-select-all-options-error="Please select an option in each set.">Product is not available in this quantity.</div>
+                    </div>
+                </div>
+                <div class="plain-line"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-section-bg">
+    <div class="container-tight">
+        <div data-duration-in="300" data-duration-out="100" data-current="Tab 1" data-easing="ease" class="w-tabs">
+            <div class="tab-menu w-tab-menu">
+                <a data-w-tab="Tab 1" class="tab-link-round w-inline-block w-tab-link w--current">
+                    <div>Description</div>
+                </a>
+                <a data-w-tab="Tab 2" class="tab-link-round w-inline-block w-tab-link">
+                    <div>Additional Information</div>
+                </a>
+                <a data-w-tab="Tab 3" class="tab-link-round w-inline-block w-tab-link">
+                    <div>Reviews (0)</div>
+                </a>
+            </div>
+            <div class="w-tab-content">
+                <div data-w-tab="Tab 1" class="w-tab-pane w--tab-active">
+                    <div class="additional-details w-richtext">
+                        <p>{{product.description}}</p>
+                    </div>
+                </div>
+                <div data-w-tab="Tab 2" class="w-tab-pane">
+                    <div class="additional-details w-richtext">
+                        <p>{{product.additional_info}}</p>
+                    </div>
+                </div>
+                <div data-w-tab="Tab 3" class="w-tab-pane">
+                    <div class="additional-details w-richtext">
+                        <p>Alienum phaedrum torquatos nec eu, vis detraxit periculis ex, nihil expetendis in mei. Mei an pericula euripidis, hinc partem ei est.</p>
+                        <p>Eos ei nisl graecis, vix aperiri consequat an. Eius lorem tincidunt vix at, vel pertinax sensibus id, error epicurei mea et. Mea facilisis urbanitas. Vis ei rationibus definiebas, eu qui purto zril laoreet. Ex error omnium interpretaris
+                            pro, alia illum ea vim.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="content-section-short">
+    <div class="container">
+        <div class="title-wrap-centre">
+            <h2>Related Items</h2>
+        </div>
+        <div class="w-dyn-list">
+            <div role="list" class="w-dyn-items w-row">
+                <div role="listitem" class="menu-item w-dyn-item w-col w-col-6">
+                    <div class="food-card">
+                        <a href="/product/salad-ceaser" class="food-image-square w-inline-block"><img alt="" data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_main_image_4dr%22%2C%22to%22%3A%22src%22%7D%5D" src="../images/side-2006.png" class="food-image" /></a>
+                        <div class="food-card-content">
+                            <a href="/product/salad-ceaser" class="food-title-wrap w-inline-block">
+                                <h6>Salad Ceaser</h6>
+                                <div data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_price_%22%2C%22to%22%3A%22innerHTML%22%7D%5D" class="price">$ 6.00 USD</div>
+                            </a>
+                            <p class="paragraph">Spicy buffalo chicken, blue cheese crumbles, and celery sticks give this burger a wings-night flair.</p>
+                            <div class="add-to-cart">
+                                <form data-node-type="commerce-add-to-cart-form" data-commerce-sku-id="661ec1154c61f3baf573e318" data-loading-text="Adding to cart..." data-commerce-product-id="661ec1154c61f3baf573e2cb" class="w-commerce-commerceaddtocartform default-state"><input type="number" pattern="^[0-9]+$" inputMode="numeric" id="quantity-77d000eb734842aa4cf87b0bb03800c1" name="commerce-add-to-cart-quantity-input" min="1" class="w-commerce-commerceaddtocartquantityinput quantity" value="1"
+                                    /><input type="submit" data-node-type="commerce-add-to-cart-button" data-loading-text="Adding to cart..." aria-busy="false" aria-haspopup="dialog" class="w-commerce-commerceaddtocartbutton order-button" value="Add to Cart"
+                                    /></form>
+                                <div style="display:none" class="w-commerce-commerceaddtocartoutofstock out-of-stock-state" tabindex="0">
+                                    <div>This product is out of stock.</div>
+                                </div>
+                                <div aria-live="" data-node-type="commerce-add-to-cart-error" style="display:none" class="w-commerce-commerceaddtocarterror">
+                                    <div data-node-type="commerce-add-to-cart-error" data-w-add-to-cart-quantity-error="Product is not available in this quantity." data-w-add-to-cart-general-error="Something went wrong when adding this item to the cart." data-w-add-to-cart-mixed-cart-error="You can’t purchase another product with a subscription."
+                                        data-w-add-to-cart-buy-now-error="Something went wrong when trying to purchase this item." data-w-add-to-cart-checkout-disabled-error="Checkout is disabled on this site." data-w-add-to-cart-select-all-options-error="Please select an option in each set.">Product is not available in this quantity.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="listitem" class="menu-item w-dyn-item w-col w-col-6">
+                    <div class="food-card">
+                        <a href="/product/beans-slow-cooked" aria-current="page" class="food-image-square w-inline-block w--current"><img alt="" data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_main_image_4dr%22%2C%22to%22%3A%22src%22%7D%5D" src="../images/side-2005.png" class="food-image" /></a>
+                        <div class="food-card-content">
+                            <a href="/product/beans-slow-cooked" aria-current="page" class="food-title-wrap w-inline-block w--current">
+                                <h6>Beans Slow Cooked</h6>
+                                <div data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_price_%22%2C%22to%22%3A%22innerHTML%22%7D%5D" class="price">$ 4.00 USD</div>
+                            </a>
+                            <p class="paragraph">Packed with smoked cheddar, bacon, and a smoky chipotle sauce that adds depth to every bite.</p>
+                            <div class="add-to-cart">
+                                <form data-node-type="commerce-add-to-cart-form" data-commerce-sku-id="661ec1154c61f3baf573e315" data-loading-text="Adding to cart..." data-commerce-product-id="661ec1154c61f3baf573e2ca" class="w-commerce-commerceaddtocartform default-state"><input type="number" pattern="^[0-9]+$" inputMode="numeric" id="quantity-77d000eb734842aa4cf87b0bb03800c1" name="commerce-add-to-cart-quantity-input" min="1" class="w-commerce-commerceaddtocartquantityinput quantity" value="1"
+                                    /><input type="submit" data-node-type="commerce-add-to-cart-button" data-loading-text="Adding to cart..." aria-busy="false" aria-haspopup="dialog" class="w-commerce-commerceaddtocartbutton order-button" value="Add to Cart"
+                                    /></form>
+                                <div style="display:none" class="w-commerce-commerceaddtocartoutofstock out-of-stock-state" tabindex="0">
+                                    <div>This product is out of stock.</div>
+                                </div>
+                                <div aria-live="" data-node-type="commerce-add-to-cart-error" style="display:none" class="w-commerce-commerceaddtocarterror">
+                                    <div data-node-type="commerce-add-to-cart-error" data-w-add-to-cart-quantity-error="Product is not available in this quantity." data-w-add-to-cart-general-error="Something went wrong when adding this item to the cart." data-w-add-to-cart-mixed-cart-error="You can’t purchase another product with a subscription."
+                                        data-w-add-to-cart-buy-now-error="Something went wrong when trying to purchase this item." data-w-add-to-cart-checkout-disabled-error="Checkout is disabled on this site." data-w-add-to-cart-select-all-options-error="Please select an option in each set.">Product is not available in this quantity.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="listitem" class="menu-item w-dyn-item w-col w-col-6">
+                    <div class="food-card">
+                        <a href="/product/fries-cheese" class="food-image-square w-inline-block"><img alt="" data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_main_image_4dr%22%2C%22to%22%3A%22src%22%7D%5D" src="../images/side-2002.png" class="food-image" /></a>
+                        <div class="food-card-content">
+                            <a href="/product/fries-cheese" class="food-title-wrap w-inline-block">
+                                <h6>Fries Cheese</h6>
+                                <div data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_price_%22%2C%22to%22%3A%22innerHTML%22%7D%5D" class="price">$ 5.00 USD</div>
+                            </a>
+                            <p class="paragraph">Crumbled blue cheese, crisp bacon, and a tangy blue cheese dressing for sophisticated palates.</p>
+                            <div class="add-to-cart">
+                                <form data-node-type="commerce-add-to-cart-form" data-commerce-sku-id="661ec1154c61f3baf573e313" data-loading-text="Adding to cart..." data-commerce-product-id="661ec1154c61f3baf573e2cd" class="w-commerce-commerceaddtocartform default-state"><input type="number" pattern="^[0-9]+$" inputMode="numeric" id="quantity-77d000eb734842aa4cf87b0bb03800c1" name="commerce-add-to-cart-quantity-input" min="1" class="w-commerce-commerceaddtocartquantityinput quantity" value="1"
+                                    /><input type="submit" data-node-type="commerce-add-to-cart-button" data-loading-text="Adding to cart..." aria-busy="false" aria-haspopup="dialog" class="w-commerce-commerceaddtocartbutton order-button" value="Add to Cart"
+                                    /></form>
+                                <div style="display:none" class="w-commerce-commerceaddtocartoutofstock out-of-stock-state" tabindex="0">
+                                    <div>This product is out of stock.</div>
+                                </div>
+                                <div aria-live="" data-node-type="commerce-add-to-cart-error" style="display:none" class="w-commerce-commerceaddtocarterror">
+                                    <div data-node-type="commerce-add-to-cart-error" data-w-add-to-cart-quantity-error="Product is not available in this quantity." data-w-add-to-cart-general-error="Something went wrong when adding this item to the cart." data-w-add-to-cart-mixed-cart-error="You can’t purchase another product with a subscription."
+                                        data-w-add-to-cart-buy-now-error="Something went wrong when trying to purchase this item." data-w-add-to-cart-checkout-disabled-error="Checkout is disabled on this site." data-w-add-to-cart-select-all-options-error="Please select an option in each set.">Product is not available in this quantity.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div role="listitem" class="menu-item w-dyn-item w-col w-col-6">
+                    <div class="food-card">
+                        <a href="/product/fries-rustic" class="food-image-square w-inline-block"><img alt="" data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_main_image_4dr%22%2C%22to%22%3A%22src%22%7D%5D" src="../images/side-2003.png" class="food-image" /></a>
+                        <div class="food-card-content">
+                            <a href="/product/fries-rustic" class="food-title-wrap w-inline-block">
+                                <h6>Fries Rustic</h6>
+                                <div data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_price_%22%2C%22to%22%3A%22innerHTML%22%7D%5D" class="price">$ 4.00 USD</div>
+                            </a>
+                            <p class="paragraph">A tropical twist with grilled pineapple, teriyaki sauce, and ham over a tender beef patty.
+                            </p>
+                            <div class="add-to-cart">
+                                <form data-node-type="commerce-add-to-cart-form" data-commerce-sku-id="661ec1154c61f3baf573e31c" data-loading-text="Adding to cart..." data-commerce-product-id="661ec1154c61f3baf573e2c4" class="w-commerce-commerceaddtocartform default-state"><input type="number" pattern="^[0-9]+$" inputMode="numeric" id="quantity-77d000eb734842aa4cf87b0bb03800c1" name="commerce-add-to-cart-quantity-input" min="1" class="w-commerce-commerceaddtocartquantityinput quantity" value="1"
+                                    /><input type="submit" data-node-type="commerce-add-to-cart-button" data-loading-text="Adding to cart..." aria-busy="false" aria-haspopup="dialog" class="w-commerce-commerceaddtocartbutton order-button" value="Add to Cart"
+                                    /></form>
+                                <div style="display:none" class="w-commerce-commerceaddtocartoutofstock out-of-stock-state" tabindex="0">
+                                    <div>This product is out of stock.</div>
+                                </div>
+                                <div aria-live="" data-node-type="commerce-add-to-cart-error" style="display:none" class="w-commerce-commerceaddtocarterror">
+                                    <div data-node-type="commerce-add-to-cart-error" data-w-add-to-cart-quantity-error="Product is not available in this quantity." data-w-add-to-cart-general-error="Something went wrong when adding this item to the cart." data-w-add-to-cart-mixed-cart-error="You can’t purchase another product with a subscription."
+                                        data-w-add-to-cart-buy-now-error="Something went wrong when trying to purchase this item." data-w-add-to-cart-checkout-disabled-error="Checkout is disabled on this site." data-w-add-to-cart-select-all-options-error="Please select an option in each set.">Product is not available in this quantity.</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="cta-section">
+    <div class="w-layout-grid cta-grid">
+        <div class="cta-image"></div>
+        <div class="cta-content">
+            <h1 class="cta-heading"><span class="dark-span">Support</span> good food<br />and local business.</h1><a href="/order" class="button-white button-space w-button">Order Now</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
