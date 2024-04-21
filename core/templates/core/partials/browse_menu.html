@@ -72,7 +72,7 @@
                                         <div class="add-to-cart">
                                             <form class="w-commerce-commerceaddtocartform default-state" method="post" action="/add-to-cart/{{ product.id }}/">
                                                 {% csrf_token %}
-                                                <input type="number" pattern="^[0-9]+$" inputMode="numeric" id="quantity-{{ product.id }}" name="quantity" min="1" class="w-commerce-commerceaddtocartquantityinput quantity quantity" value="1">
+                                                <input type="numZber" pattern="^[0-9]+$" inputMode="numeric" id="quantity-{{ product.id }}" name="quantity" min="1" class="w-commerce-commerceaddtocartquantityinput quantity quantity" value="1">
                                                 <input type="submit" class="order-button w-commerce-commerceaddtocartbutton" value="Add to Cart">
                                             </form>
                                             <div style="display:none" class="w-commerce-commerceaddtocartoutofstock out-of-stock-state" tabindex="0">
