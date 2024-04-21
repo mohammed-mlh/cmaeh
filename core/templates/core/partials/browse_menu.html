@@ -24,11 +24,11 @@
                             {% for product in burgers %}
                             <div role="listitem" class="menu-item w-dyn-item w-col w-col-6">
                                 <div class="food-card">
-                                    <a href="/product/burger-dreams" class="food-image-square w-inline-block">
+                                    <a href="/product/{{product.slug}}" class="food-image-square w-inline-block">
                                         <img alt="" src="{% static 'media/' %}{{product.image}}" class="food-image" />
                                     </a>
                                     <div class="food-card-content">
-                                        <a href="/product/burger-dreams" class="food-title-wrap w-inline-block">
+                                        <a href="/product/{{product.slug}}" class="food-title-wrap w-inline-block">
                                             <h6>{{product.title}}</h6>
                                             <div data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_price_%22%2C%22to%22%3A%22innerHTML%22%7D%5D" class="price">$ 9.20 USD</div>
                                         </a>
@@ -60,11 +60,11 @@
                             {% for product in sides %}
                             <div role="listitem" class="menu-item w-dyn-item w-col w-col-6">
                                 <div class="food-card">
-                                    <a href="/product/burger-dreams" class="food-image-square w-inline-block">
+                                    <a href="/product/{{product.slug}}" class="food-image-square w-inline-block">
                                         <img alt="" src="{% static 'media/' %}{{product.image}}" class="food-image" />
                                     </a>
                                     <div class="food-card-content">
-                                        <a href="/product/burger-dreams" class="food-title-wrap w-inline-block">
+                                        <a href="/product/{{product.slug}}" class="food-title-wrap w-inline-block">
                                             <h6>{{product.title}}</h6>
                                             <div data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_price_%22%2C%22to%22%3A%22innerHTML%22%7D%5D" class="price">$ 9.20 USD</div>
                                         </a>
@@ -96,11 +96,11 @@
                             {% for product in drinks %}
                             <div role="listitem" class="menu-item w-dyn-item w-col w-col-6">
                                 <div class="food-card">
-                                    <a href="/product/burger-dreams" class="food-image-square w-inline-block">
+                                    <a href="/product/{{product.slug}}" class="food-image-square w-inline-block">
                                         <img alt="" src="{% static 'media/' %}{{product.image}}" class="food-image" />
                                     </a>
                                     <div class="food-card-content">
-                                        <a href="/product/burger-dreams" class="food-title-wrap w-inline-block">
+                                        <a href="/product/{{product.slug}}" class="food-title-wrap w-inline-block">
                                             <h6>{{product.title}}</h6>
                                             <div data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_price_%22%2C%22to%22%3A%22innerHTML%22%7D%5D" class="price">$ {{product.price}} USD</div>
                                         </a>
