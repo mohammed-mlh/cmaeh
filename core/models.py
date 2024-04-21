@@ -14,6 +14,7 @@ class Product(models.Model):
   ]
 
   title = models.CharField(max_length=100)
+  subtitle = models.CharField(max_length=200,  blank=True)
   price = models.DecimalField(max_digits=10, decimal_places=2)
   description = models.TextField()
   is_featured = models.BooleanField(default=False)
@@ -23,7 +24,7 @@ class Product(models.Model):
 
   # Additional information based on category
   # Example: Ingredients for burgers, Size for drinks, etc.
-  additional_info = models.CharField(max_length=200, blank=True)
+  additional_info = models.TextField(blank=True)
 
   created_at = models.DateTimeField(auto_now_add=True)
   updated_at = models.DateTimeField(auto_now=True)

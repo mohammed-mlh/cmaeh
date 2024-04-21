@@ -29,7 +29,7 @@
                                     </a>
                                     <div class="food-card-content">
                                         <a href="/product/burger-dreams" class="food-title-wrap w-inline-block">
-                                            <h6>Burger Dreams</h6>
+                                            <h6>{{product.title}}</h6>
                                             <div data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_price_%22%2C%22to%22%3A%22innerHTML%22%7D%5D" class="price">$ 9.20 USD</div>
                                         </a>
                                         <p class="paragraph">{{product.subtitle}}</p>
@@ -57,19 +57,24 @@
                 <div data-w-tab="Sides" class="w-tab-pane">
                     <div class="w-dyn-list">
                         <div role="list" class="order-collection w-dyn-items w-row">
+                            {% for product in sides %}
                             <div role="listitem" class="menu-item w-dyn-item w-col w-col-6">
                                 <div class="food-card">
-                                    <a href="/product/salad-ceaser" class="food-image-square w-inline-block"><img data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_main_image_4dr%22%2C%22to%22%3A%22src%22%7D%5D" alt="" src="images/side-2006.png" class="food-image" /></a>
+                                    <a href="/product/burger-dreams" class="food-image-square w-inline-block">
+                                        <img alt="" src="{% static 'media/' %}{{product.image}}" class="food-image" />
+                                    </a>
                                     <div class="food-card-content">
-                                        <a href="/product/salad-ceaser" class="food-title-wrap w-inline-block">
-                                            <h6>Salad Ceaser</h6>
-                                            <div data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_price_%22%2C%22to%22%3A%22innerHTML%22%7D%5D" class="price">$ 6.00 USD</div>
+                                        <a href="/product/burger-dreams" class="food-title-wrap w-inline-block">
+                                            <h6>{{product.title}}</h6>
+                                            <div data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_price_%22%2C%22to%22%3A%22innerHTML%22%7D%5D" class="price">$ 9.20 USD</div>
                                         </a>
-                                        <p class="paragraph">Spicy buffalo chicken, blue cheese crumbles, and celery sticks give this burger a wings-night flair.</p>
+                                        <p class="paragraph">{{product.subtitle}}</p>
                                         <div class="add-to-cart">
-                                            <form data-node-type="commerce-add-to-cart-form" data-commerce-sku-id="661ec1154c61f3baf573e318" data-loading-text="Adding to cart..." data-commerce-product-id="661ec1154c61f3baf573e2cb" class="w-commerce-commerceaddtocartform default-state"><input type="number" pattern="^[0-9]+$" inputMode="numeric" id="quantity-77d000eb734842aa4cf87b0bb03800c1" name="commerce-add-to-cart-quantity-input" min="1" class="w-commerce-commerceaddtocartquantityinput quantity"
-                                                    value="1" /><input type="submit" data-node-type="commerce-add-to-cart-button" data-loading-text="Adding to cart..." aria-busy="false" aria-haspopup="dialog" class="w-commerce-commerceaddtocartbutton order-button"
-                                                    value="Add to Cart" /></form>
+                                            <form class="w-commerce-commerceaddtocartform default-state" method="post" action="/add-to-cart/{{ product.id }}/">
+                                                {% csrf_token %}
+                                                <input type="number" pattern="^[0-9]+$" inputMode="numeric" id="quantity-{{ product.id }}" name="quantity" min="1" class="w-commerce-commerceaddtocartquantityinput quantity quantity" value="1">
+                                                <input type="submit" class="order-button w-commerce-commerceaddtocartbutton" value="Add to Cart">
+                                            </form>
                                             <div style="display:none" class="w-commerce-commerceaddtocartoutofstock out-of-stock-state" tabindex="0">
                                                 <div>This product is out of stock.</div>
                                             </div>
@@ -81,97 +86,31 @@
                                     </div>
                                 </div>
                             </div>
-                            <div role="listitem" class="menu-item w-dyn-item w-col w-col-6">
-                                <div class="food-card">
-                                    <a href="/product/beans-slow-cooked" class="food-image-square w-inline-block"><img data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_main_image_4dr%22%2C%22to%22%3A%22src%22%7D%5D" alt="" src="images/side-2005.png" class="food-image" /></a>
-                                    <div class="food-card-content">
-                                        <a href="/product/beans-slow-cooked" class="food-title-wrap w-inline-block">
-                                            <h6>Beans Slow Cooked</h6>
-                                            <div data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_price_%22%2C%22to%22%3A%22innerHTML%22%7D%5D" class="price">$ 4.00 USD</div>
-                                        </a>
-                                        <p class="paragraph">Packed with smoked cheddar, bacon, and a smoky chipotle sauce that adds depth to every bite.</p>
-                                        <div class="add-to-cart">
-                                            <form data-node-type="commerce-add-to-cart-form" data-commerce-sku-id="661ec1154c61f3baf573e315" data-loading-text="Adding to cart..." data-commerce-product-id="661ec1154c61f3baf573e2ca" class="w-commerce-commerceaddtocartform default-state"><input type="number" pattern="^[0-9]+$" inputMode="numeric" id="quantity-77d000eb734842aa4cf87b0bb03800c1" name="commerce-add-to-cart-quantity-input" min="1" class="w-commerce-commerceaddtocartquantityinput quantity"
-                                                    value="1" /><input type="submit" data-node-type="commerce-add-to-cart-button" data-loading-text="Adding to cart..." aria-busy="false" aria-haspopup="dialog" class="w-commerce-commerceaddtocartbutton order-button"
-                                                    value="Add to Cart" /></form>
-                                            <div style="display:none" class="w-commerce-commerceaddtocartoutofstock out-of-stock-state" tabindex="0">
-                                                <div>This product is out of stock.</div>
-                                            </div>
-                                            <div aria-live="" data-node-type="commerce-add-to-cart-error" style="display:none" class="w-commerce-commerceaddtocarterror">
-                                                <div data-node-type="commerce-add-to-cart-error" data-w-add-to-cart-quantity-error="Product is not available in this quantity." data-w-add-to-cart-general-error="Something went wrong when adding this item to the cart." data-w-add-to-cart-mixed-cart-error="You can’t purchase another product with a subscription."
-                                                    data-w-add-to-cart-buy-now-error="Something went wrong when trying to purchase this item." data-w-add-to-cart-checkout-disabled-error="Checkout is disabled on this site." data-w-add-to-cart-select-all-options-error="Please select an option in each set.">Product is not available in this quantity.</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div role="listitem" class="menu-item w-dyn-item w-col w-col-6">
-                                <div class="food-card">
-                                    <a href="/product/fries-cheese" class="food-image-square w-inline-block"><img data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_main_image_4dr%22%2C%22to%22%3A%22src%22%7D%5D" alt="" src="images/side-2002.png" class="food-image" /></a>
-                                    <div class="food-card-content">
-                                        <a href="/product/fries-cheese" class="food-title-wrap w-inline-block">
-                                            <h6>Fries Cheese</h6>
-                                            <div data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_price_%22%2C%22to%22%3A%22innerHTML%22%7D%5D" class="price">$ 5.00 USD</div>
-                                        </a>
-                                        <p class="paragraph">Crumbled blue cheese, crisp bacon, and a tangy blue cheese dressing for sophisticated palates.</p>
-                                        <div class="add-to-cart">
-                                            <form data-node-type="commerce-add-to-cart-form" data-commerce-sku-id="661ec1154c61f3baf573e313" data-loading-text="Adding to cart..." data-commerce-product-id="661ec1154c61f3baf573e2cd" class="w-commerce-commerceaddtocartform default-state"><input type="number" pattern="^[0-9]+$" inputMode="numeric" id="quantity-77d000eb734842aa4cf87b0bb03800c1" name="commerce-add-to-cart-quantity-input" min="1" class="w-commerce-commerceaddtocartquantityinput quantity"
-                                                    value="1" /><input type="submit" data-node-type="commerce-add-to-cart-button" data-loading-text="Adding to cart..." aria-busy="false" aria-haspopup="dialog" class="w-commerce-commerceaddtocartbutton order-button"
-                                                    value="Add to Cart" /></form>
-                                            <div style="display:none" class="w-commerce-commerceaddtocartoutofstock out-of-stock-state" tabindex="0">
-                                                <div>This product is out of stock.</div>
-                                            </div>
-                                            <div aria-live="" data-node-type="commerce-add-to-cart-error" style="display:none" class="w-commerce-commerceaddtocarterror">
-                                                <div data-node-type="commerce-add-to-cart-error" data-w-add-to-cart-quantity-error="Product is not available in this quantity." data-w-add-to-cart-general-error="Something went wrong when adding this item to the cart." data-w-add-to-cart-mixed-cart-error="You can’t purchase another product with a subscription."
-                                                    data-w-add-to-cart-buy-now-error="Something went wrong when trying to purchase this item." data-w-add-to-cart-checkout-disabled-error="Checkout is disabled on this site." data-w-add-to-cart-select-all-options-error="Please select an option in each set.">Product is not available in this quantity.</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div role="listitem" class="menu-item w-dyn-item w-col w-col-6">
-                                <div class="food-card">
-                                    <a href="/product/fries-rustic" class="food-image-square w-inline-block"><img data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_main_image_4dr%22%2C%22to%22%3A%22src%22%7D%5D" alt="" src="images/side-2003.png" class="food-image" /></a>
-                                    <div class="food-card-content">
-                                        <a href="/product/fries-rustic" class="food-title-wrap w-inline-block">
-                                            <h6>Fries Rustic</h6>
-                                            <div data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_price_%22%2C%22to%22%3A%22innerHTML%22%7D%5D" class="price">$ 4.00 USD</div>
-                                        </a>
-                                        <p class="paragraph">A tropical twist with grilled pineapple, teriyaki sauce, and ham over a tender beef patty.</p>
-                                        <div class="add-to-cart">
-                                            <form data-node-type="commerce-add-to-cart-form" data-commerce-sku-id="661ec1154c61f3baf573e31c" data-loading-text="Adding to cart..." data-commerce-product-id="661ec1154c61f3baf573e2c4" class="w-commerce-commerceaddtocartform default-state"><input type="number" pattern="^[0-9]+$" inputMode="numeric" id="quantity-77d000eb734842aa4cf87b0bb03800c1" name="commerce-add-to-cart-quantity-input" min="1" class="w-commerce-commerceaddtocartquantityinput quantity"
-                                                    value="1" /><input type="submit" data-node-type="commerce-add-to-cart-button" data-loading-text="Adding to cart..." aria-busy="false" aria-haspopup="dialog" class="w-commerce-commerceaddtocartbutton order-button"
-                                                    value="Add to Cart" /></form>
-                                            <div style="display:none" class="w-commerce-commerceaddtocartoutofstock out-of-stock-state" tabindex="0">
-                                                <div>This product is out of stock.</div>
-                                            </div>
-                                            <div aria-live="" data-node-type="commerce-add-to-cart-error" style="display:none" class="w-commerce-commerceaddtocarterror">
-                                                <div data-node-type="commerce-add-to-cart-error" data-w-add-to-cart-quantity-error="Product is not available in this quantity." data-w-add-to-cart-general-error="Something went wrong when adding this item to the cart." data-w-add-to-cart-mixed-cart-error="You can’t purchase another product with a subscription."
-                                                    data-w-add-to-cart-buy-now-error="Something went wrong when trying to purchase this item." data-w-add-to-cart-checkout-disabled-error="Checkout is disabled on this site." data-w-add-to-cart-select-all-options-error="Please select an option in each set.">Product is not available in this quantity.</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>
                 <div data-w-tab="Drinks" class="w-tab-pane">
                     <div class="w-dyn-list">
                         <div role="list" class="order-collection w-dyn-items w-row">
+                            {% for product in drinks %}
                             <div role="listitem" class="menu-item w-dyn-item w-col w-col-6">
                                 <div class="food-card">
-                                    <a href="/product/drink-fig-lime" class="food-image-square w-inline-block"><img data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_main_image_4dr%22%2C%22to%22%3A%22src%22%7D%5D" alt="" src="images/drink-201.png" class="food-image" /></a>
+                                    <a href="/product/burger-dreams" class="food-image-square w-inline-block">
+                                        <img alt="" src="{% static 'media/' %}{{product.image}}" class="food-image" />
+                                    </a>
                                     <div class="food-card-content">
-                                        <a href="/product/drink-fig-lime" class="food-title-wrap w-inline-block">
-                                            <h6>Drink Fig &amp; Lime</h6>
-                                            <div data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_price_%22%2C%22to%22%3A%22innerHTML%22%7D%5D" class="price">$ 4.00 USD</div>
+                                        <a href="/product/burger-dreams" class="food-title-wrap w-inline-block">
+                                            <h6>{{product.title}}</h6>
+                                            <div data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_price_%22%2C%22to%22%3A%22innerHTML%22%7D%5D" class="price">$ {{product.price}} USD</div>
                                         </a>
-                                        <p class="paragraph"> Start your day with a beef patty topped with a fried egg, bacon, and hash browns on a toasted English muffin.</p>
+                                        <p class="paragraph">{{product.subtitle}}</p>
                                         <div class="add-to-cart">
-                                            <form data-node-type="commerce-add-to-cart-form" data-commerce-sku-id="661ec1154c61f3baf573e314" data-loading-text="Adding to cart..." data-commerce-product-id="661ec1154c61f3baf573e2e1" class="w-commerce-commerceaddtocartform default-state"><input type="number" pattern="^[0-9]+$" inputMode="numeric" id="quantity-77d000eb734842aa4cf87b0bb03800c1" name="commerce-add-to-cart-quantity-input" min="1" class="w-commerce-commerceaddtocartquantityinput quantity"
-                                                    value="1" /><input type="submit" data-node-type="commerce-add-to-cart-button" data-loading-text="Adding to cart..." aria-busy="false" aria-haspopup="dialog" class="w-commerce-commerceaddtocartbutton order-button"
-                                                    value="Add to Cart" /></form>
+                                            <form class="w-commerce-commerceaddtocartform default-state" method="post" action="/add-to-cart/{{ product.id }}/">
+                                                {% csrf_token %}
+                                                <input type="number" pattern="^[0-9]+$" inputMode="numeric" id="quantity-{{ product.id }}" name="quantity" min="1" class="w-commerce-commerceaddtocartquantityinput quantity quantity" value="1">
+                                                <input type="submit" class="order-button w-commerce-commerceaddtocartbutton" value="Add to Cart">
+                                            </form>
                                             <div style="display:none" class="w-commerce-commerceaddtocartoutofstock out-of-stock-state" tabindex="0">
                                                 <div>This product is out of stock.</div>
                                             </div>
@@ -183,78 +122,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div role="listitem" class="menu-item w-dyn-item w-col w-col-6">
-                                <div class="food-card">
-                                    <a href="/product/drink-liquor" class="food-image-square w-inline-block"><img data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_main_image_4dr%22%2C%22to%22%3A%22src%22%7D%5D" alt="" src="images/drink-202.png" class="food-image" /></a>
-                                    <div class="food-card-content">
-                                        <a href="/product/drink-liquor" class="food-title-wrap w-inline-block">
-                                            <h6>Drink Liquor</h6>
-                                            <div data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_price_%22%2C%22to%22%3A%22innerHTML%22%7D%5D" class="price">$ 7.00 USD</div>
-                                        </a>
-                                        <p class="paragraph"> Seasoned lamb patty with feta cheese, olives, and tzatziki for a Mediterranean touch.</p>
-                                        <div class="add-to-cart">
-                                            <form data-node-type="commerce-add-to-cart-form" data-commerce-sku-id="661ec1154c61f3baf573e31d" data-loading-text="Adding to cart..." data-commerce-product-id="661ec1154c61f3baf573e300" class="w-commerce-commerceaddtocartform default-state"><input type="number" pattern="^[0-9]+$" inputMode="numeric" id="quantity-77d000eb734842aa4cf87b0bb03800c1" name="commerce-add-to-cart-quantity-input" min="1" class="w-commerce-commerceaddtocartquantityinput quantity"
-                                                    value="1" /><input type="submit" data-node-type="commerce-add-to-cart-button" data-loading-text="Adding to cart..." aria-busy="false" aria-haspopup="dialog" class="w-commerce-commerceaddtocartbutton order-button"
-                                                    value="Add to Cart" /></form>
-                                            <div style="display:none" class="w-commerce-commerceaddtocartoutofstock out-of-stock-state" tabindex="0">
-                                                <div>This product is out of stock.</div>
-                                            </div>
-                                            <div aria-live="" data-node-type="commerce-add-to-cart-error" style="display:none" class="w-commerce-commerceaddtocarterror">
-                                                <div data-node-type="commerce-add-to-cart-error" data-w-add-to-cart-quantity-error="Product is not available in this quantity." data-w-add-to-cart-general-error="Something went wrong when adding this item to the cart." data-w-add-to-cart-mixed-cart-error="You can’t purchase another product with a subscription."
-                                                    data-w-add-to-cart-buy-now-error="Something went wrong when trying to purchase this item." data-w-add-to-cart-checkout-disabled-error="Checkout is disabled on this site." data-w-add-to-cart-select-all-options-error="Please select an option in each set.">Product is not available in this quantity.</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div role="listitem" class="menu-item w-dyn-item w-col w-col-6">
-                                <div class="food-card">
-                                    <a href="/product/drink-lime" class="food-image-square w-inline-block"><img data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_main_image_4dr%22%2C%22to%22%3A%22src%22%7D%5D" alt="" src="images/drink-204.png" class="food-image" /></a>
-                                    <div class="food-card-content">
-                                        <a href="/product/drink-lime" class="food-title-wrap w-inline-block">
-                                            <h6>Drink Lime</h6>
-                                            <div data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_price_%22%2C%22to%22%3A%22innerHTML%22%7D%5D" class="price">$ 4.00 USD</div>
-                                        </a>
-                                        <p class="paragraph">Jalapeño-infused cheese, salsa, avocado, and crushed tortilla chips for a south-of-the-border flavor.</p>
-                                        <div class="add-to-cart">
-                                            <form data-node-type="commerce-add-to-cart-form" data-commerce-sku-id="661ec1154c61f3baf573e317" data-loading-text="Adding to cart..." data-commerce-product-id="661ec1154c61f3baf573e2c3" class="w-commerce-commerceaddtocartform default-state"><input type="number" pattern="^[0-9]+$" inputMode="numeric" id="quantity-77d000eb734842aa4cf87b0bb03800c1" name="commerce-add-to-cart-quantity-input" min="1" class="w-commerce-commerceaddtocartquantityinput quantity"
-                                                    value="1" /><input type="submit" data-node-type="commerce-add-to-cart-button" data-loading-text="Adding to cart..." aria-busy="false" aria-haspopup="dialog" class="w-commerce-commerceaddtocartbutton order-button"
-                                                    value="Add to Cart" /></form>
-                                            <div style="display:none" class="w-commerce-commerceaddtocartoutofstock out-of-stock-state" tabindex="0">
-                                                <div>This product is out of stock.</div>
-                                            </div>
-                                            <div aria-live="" data-node-type="commerce-add-to-cart-error" style="display:none" class="w-commerce-commerceaddtocarterror">
-                                                <div data-node-type="commerce-add-to-cart-error" data-w-add-to-cart-quantity-error="Product is not available in this quantity." data-w-add-to-cart-general-error="Something went wrong when adding this item to the cart." data-w-add-to-cart-mixed-cart-error="You can’t purchase another product with a subscription."
-                                                    data-w-add-to-cart-buy-now-error="Something went wrong when trying to purchase this item." data-w-add-to-cart-checkout-disabled-error="Checkout is disabled on this site." data-w-add-to-cart-select-all-options-error="Please select an option in each set.">Product is not available in this quantity.</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div role="listitem" class="menu-item w-dyn-item w-col w-col-6">
-                                <div class="food-card">
-                                    <a href="/product/drink-cola" class="food-image-square w-inline-block"><img data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_main_image_4dr%22%2C%22to%22%3A%22src%22%7D%5D" alt="" src="images/drink-203.png" class="food-image" /></a>
-                                    <div class="food-card-content">
-                                        <a href="/product/drink-cola" class="food-title-wrap w-inline-block">
-                                            <h6>Drink Cola</h6>
-                                            <div data-wf-sku-bindings="%5B%7B%22from%22%3A%22f_price_%22%2C%22to%22%3A%22innerHTML%22%7D%5D" class="price">$ 3.00 USD</div>
-                                        </a>
-                                        <p class="paragraph">Garlic-infused beef patty with roasted garlic aioli and caramelized onions for garlic enthusiasts.</p>
-                                        <div class="add-to-cart">
-                                            <form data-node-type="commerce-add-to-cart-form" data-commerce-sku-id="661ec1154c61f3baf573e31a" data-loading-text="Adding to cart..." data-commerce-product-id="661ec1154c61f3baf573e2c7" class="w-commerce-commerceaddtocartform default-state"><input type="number" pattern="^[0-9]+$" inputMode="numeric" id="quantity-77d000eb734842aa4cf87b0bb03800c1" name="commerce-add-to-cart-quantity-input" min="1" class="w-commerce-commerceaddtocartquantityinput quantity"
-                                                    value="1" /><input type="submit" data-node-type="commerce-add-to-cart-button" data-loading-text="Adding to cart..." aria-busy="false" aria-haspopup="dialog" class="w-commerce-commerceaddtocartbutton order-button"
-                                                    value="Add to Cart" /></form>
-                                            <div style="display:none" class="w-commerce-commerceaddtocartoutofstock out-of-stock-state" tabindex="0">
-                                                <div>This product is out of stock.</div>
-                                            </div>
-                                            <div aria-live="" data-node-type="commerce-add-to-cart-error" style="display:none" class="w-commerce-commerceaddtocarterror">
-                                                <div data-node-type="commerce-add-to-cart-error" data-w-add-to-cart-quantity-error="Product is not available in this quantity." data-w-add-to-cart-general-error="Something went wrong when adding this item to the cart." data-w-add-to-cart-mixed-cart-error="You can’t purchase another product with a subscription."
-                                                    data-w-add-to-cart-buy-now-error="Something went wrong when trying to purchase this item." data-w-add-to-cart-checkout-disabled-error="Checkout is disabled on this site." data-w-add-to-cart-select-all-options-error="Please select an option in each set.">Product is not available in this quantity.</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            {% endfor %}
                         </div>
                     </div>
                 </div>

@@ -40,10 +40,14 @@ def index(request):
   print(cart_data)
   products = Product.objects.all().filter(is_featured=True)
   burgers = products.filter(category='burgers')
+  sides = products.filter(category='sides')
+  drinks = products.filter(category='drinks')
   print(burgers.get(id=2).category)
   config = Config.objects.first()
   return render(request, 'core/index.html', {
     'burgers': burgers,
+    'sides': sides,
+    'drinks': drinks,
     'config': config
     })
 
